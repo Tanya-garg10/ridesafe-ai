@@ -7,7 +7,6 @@ import {
   CheckCircle,
   BarChart3,
   MapPin,
-  Cpu,
   Lock,
   Zap,
   Smartphone
