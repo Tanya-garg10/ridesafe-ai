@@ -7,8 +7,6 @@ import {
   CheckCircle,
   BarChart3,
   MapPin,
-  Lock,
-  Zap,
   Smartphone
 } from 'lucide-react';
 

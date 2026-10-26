@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Colors - Midnight Mobility Intelligence Theme (from spec) */
   --bg-primary: #07111F; /* Primary background */
