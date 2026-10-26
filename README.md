@@ -32,28 +32,6 @@ RideSafe AI transforms every smartphone into an intelligent safety device for mo
 - **Analytics**: Interactive charts and weekly safety summaries
 - **Settings**: Emergency contacts, alert preferences, and profile management
 
-## 🎨 Design System
-
-### Color Palette
-- **Primary Background**: Midnight Navy (#0a0e1a)
-- **Secondary Background**: Dark Slate (#111827)
-- **Accent Color**: Cyan/Teal (#06b6d4)
-- **Emergency Color**: Red (#ef4444)
-- **Success Color**: Green (#10b981)
-- **Warning Color**: Amber (#f59e0b)
-
-### Typography
-- Modern system fonts (San Francisco, Segoe UI, Roboto)
-- Clear hierarchy with bold headings
-- High contrast for readability
-
-### Components
-- Rounded cards with subtle shadows
-- Gradient buttons with hover effects
-- Consistent spacing and layout
-- Responsive sidebar navigation
-- Mobile-first design approach
-
 ## 🏗️ Architecture
 
 ### Tech Stack
@@ -310,12 +288,6 @@ MIT License - See LICENSE file for details.
 ## 🤝 Contributing
 
 This is a demo project for the "Build With AI: Basics" hackathon. For production use, significant security, safety, and regulatory compliance work would be required.
-
-## 📞 Support
-
-For questions about this demo project, please open an issue in the repository.
-
----
 
 **Built with ❤️ for safer rides**
 
