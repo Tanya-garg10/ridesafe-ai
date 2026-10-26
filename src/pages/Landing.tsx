@@ -8,55 +8,45 @@ import {
   BarChart3,
   MapPin,
   Cpu,
-  Wifi,
   Lock,
-  Zap
+  Zap,
+  Smartphone
 } from 'lucide-react';
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-primary relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      {/* Animated Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-mint/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-accent/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-      </div>
-
+    <div className="min-h-screen bg-primary" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Navbar */}
-      <nav className="container mx-auto px-6 py-6 relative z-10">
+      <nav className="container mx-auto px-8 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-mint flex items-center justify-center shadow-lg animate-pulse-glow">
-              <Activity className="w-7 h-7 text-white" />
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-secondary flex items-center justify-center">
+              <Activity className="w-6 h-6 text-white" />
             </div>
-            <div>
-              <span className="text-xl font-bold text-white">RideSafe AI</span>
-              <p className="text-xs text-secondary">Smart Helmet. Safer Rides.</p>
-            </div>
+            <span className="text-xl font-bold text-white">RideSafe AI</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
             <Link
-              to="/dashboard"
-              className="text-secondary hover:text-accent transition-colors font-medium"
+              to="#features"
+              className="text-secondary hover:text-white transition-colors text-sm font-medium"
             >
               Features
             </Link>
             <Link
-              to="/dashboard"
-              className="text-secondary hover:text-accent transition-colors font-medium"
+              to="#how-it-works"
+              className="text-secondary hover:text-white transition-colors text-sm font-medium"
             >
               How It Works
             </Link>
             <Link
-              to="/dashboard"
-              className="text-secondary hover:text-accent transition-colors font-medium"
+              to="#technology"
+              className="text-secondary hover:text-white transition-colors text-sm font-medium"
             >
-              Safety
+              Technology
             </Link>
             <Link
               to="/login"
-              className="text-secondary hover:text-white transition-colors font-medium"
+              className="text-secondary hover:text-white transition-colors text-sm font-medium"
             >
               Sign In
             </Link>
@@ -71,69 +61,48 @@ export default function Landing() {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-mint/5 pointer-events-none" />
-        <div className="max-w-4xl relative animate-fade-in-up">
-          <div className="badge-premium mb-6 inline-block animate-gradient">
+      <section className="container mx-auto px-8 py-24 md:py-32">
+        <div className="max-w-4xl">
+          <div className="inline-block px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
             CONNECTED ROAD SAFETY
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Every Ride Deserves a
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-mint animate-gradient"> Safer Journey.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-secondary"> Safer Journey.</span>
           </h1>
-          <p className="text-xl text-secondary mb-8 leading-relaxed max-w-2xl">
+          <p className="text-xl text-secondary mb-10 leading-relaxed max-w-2xl">
             Smarter helmet monitoring, AI-assisted incident detection and connected safety workflows — designed around every journey.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/login" className="btn btn-primary btn-lg hover-lift">
+            <Link to="/login" className="btn btn-primary btn-lg">
               Explore Dashboard
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link to="/dashboard" className="btn btn-secondary btn-lg hover-lift">
+            <Link to="#how-it-works" className="btn btn-secondary btn-lg">
               See How It Works
             </Link>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <p className="text-3xl font-bold text-accent mb-1">99.9%</p>
-              <p className="text-sm text-secondary">Detection Accuracy</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-accent mb-1">&lt;2s</p>
-              <p className="text-sm text-secondary">Alert Response</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-accent mb-1">24/7</p>
-              <p className="text-sm text-secondary">Monitoring</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold text-accent mb-1">Zero</p>
-              <p className="text-sm text-secondary">False Alarms</p>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Features Grid */}
-      <section className="container mx-auto px-6 py-20 relative">
-        <div className="text-center mb-12">
+      <section id="features" className="container mx-auto px-8 py-24">
+        <div className="mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">
             Intelligent Safety Features
           </h2>
-          <p className="text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-secondary text-lg max-w-2xl">
             Powered by advanced AI and real-time sensor fusion
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <FeatureCard
             icon={Shield}
             title="AI Crash Detection"
             description="Advanced algorithms analyze accelerometer and gyroscope data to detect crashes in real-time with high accuracy."
           />
           <FeatureCard
-            icon={Cpu}
+            icon={Smartphone}
             title="Smart Helmet Integration"
             description="Connect your smart helmet for enhanced monitoring, battery status, and firmware updates."
           />
@@ -160,89 +129,165 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="container mx-auto px-6 py-20 bg-secondary rounded-3xl relative overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-mint/5 pointer-events-none" />
-        <div className="relative z-10">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            How It Works
+      {/* How It Works - Interactive Demo */}
+      <section id="how-it-works" className="container mx-auto px-8 py-24">
+        <div className="mb-16">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            See How It Works
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <StepCard
-              number="1"
-              title="Connect Your Helmet"
-              description="Pair your smart helmet with the RideSafe AI app via Bluetooth for seamless integration."
-              icon={Wifi}
-            />
-            <StepCard
-              number="2"
-              title="Start Your Ride"
-              description="Begin monitoring with one tap. The app tracks your ride in real-time with sensor data."
-              icon={Zap}
-            />
-            <StepCard
-              number="3"
-              title="Stay Protected"
-              description="If a crash is detected, emergency alerts are sent automatically to your contacts."
-              icon={Lock}
-            />
+          <p className="text-secondary text-lg max-w-2xl">
+            Monitor your helmet status and ride safety in real-time
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Helmet Connected State */}
+          <div className="card">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-white">HELMET CONNECTED</h3>
+              <span className="badge badge-success">Active</span>
+            </div>
+            <div className="bg-tertiary rounded-lg p-6 mb-4" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-accent" />
+                </div>
+                <div>
+                  <p className="text-sm text-secondary">Status</p>
+                  <p className="text-white font-medium">Worn & Connected</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-secondary mb-1">Battery</p>
+                  <p className="text-white font-medium">87%</p>
+                </div>
+                <div>
+                  <p className="text-xs text-secondary mb-1">Signal</p>
+                  <p className="text-white font-medium">Strong</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-success text-sm">
+              <CheckCircle className="w-4 h-4" />
+              <span>All sensors operational</span>
+            </div>
+          </div>
+
+          {/* Helmet Disconnected State */}
+          <div className="card">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-white">HELMET DISCONNECTED</h3>
+              <span className="badge badge-danger">Inactive</span>
+            </div>
+            <div className="bg-tertiary rounded-lg p-6 mb-4" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-danger/10 flex items-center justify-center">
+                  <AlertCircle className="w-6 h-6 text-danger" />
+                </div>
+                <div>
+                  <p className="text-sm text-secondary">Status</p>
+                  <p className="text-white font-medium">Not Detected</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-secondary mb-1">Battery</p>
+                  <p className="text-white font-medium">--</p>
+                </div>
+                <div>
+                  <p className="text-xs text-secondary mb-1">Signal</p>
+                  <p className="text-white font-medium">None</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-danger text-sm">
+              <AlertCircle className="w-4 h-4" />
+              <span>No helmet detected</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Three Step Process */}
+        <div className="mt-16 grid md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+              <Smartphone className="w-8 h-8 text-accent" />
+            </div>
+            <div className="text-xs font-bold text-accent mb-2">STEP 1</div>
+            <h3 className="text-lg font-semibold text-white mb-2">Connect</h3>
+            <p className="text-sm text-secondary">Pair your smart helmet via Bluetooth</p>
+          </div>
+          <div className="text-center">
+            <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+              <Activity className="w-8 h-8 text-accent" />
+            </div>
+            <div className="text-xs font-bold text-accent mb-2">STEP 2</div>
+            <h3 className="text-lg font-semibold text-white mb-2">Monitor</h3>
+            <p className="text-sm text-secondary">Real-time sensor data and ride tracking</p>
+          </div>
+          <div className="text-center">
+            <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8 text-accent" />
+            </div>
+            <div className="text-xs font-bold text-accent mb-2">STEP 3</div>
+            <h3 className="text-lg font-semibold text-white mb-2">Protect</h3>
+            <p className="text-sm text-secondary">Automatic emergency alerts on crash detection</p>
           </div>
         </div>
       </section>
 
-      {/* Safety Benefits */}
-      <section className="container mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">
-          Why RideSafe AI?
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <BenefitCard
-            icon={CheckCircle}
-            title="Proactive Safety"
-            description="Detect incidents before they become emergencies with real-time monitoring and early warning systems."
-          />
-          <BenefitCard
-            icon={CheckCircle}
-            title="Peace of Mind"
-            description="Ride with confidence knowing that help will be alerted automatically if you can't respond."
-          />
-          <BenefitCard
-            icon={CheckCircle}
-            title="Data-Driven Insights"
-            description="Improve your riding habits with detailed analytics and personalized safety recommendations."
-          />
-          <BenefitCard
-            icon={CheckCircle}
-            title="Emergency Ready"
-            description="Pre-configured emergency contacts and automatic location sharing for rapid response."
-          />
+      {/* Technology Section */}
+      <section id="technology" className="container mx-auto px-8 py-24">
+        <div className="mb-16">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Core Technology
+          </h2>
+          <p className="text-secondary text-lg max-w-2xl">
+            Advanced sensor fusion and AI-powered detection
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="card">
+            <div className="text-4xl font-bold text-accent mb-2">99.9%</div>
+            <p className="text-white font-medium mb-1">Detection Accuracy</p>
+            <p className="text-sm text-secondary">AI-powered crash detection algorithms</p>
+          </div>
+          <div className="card">
+            <div className="text-4xl font-bold text-accent mb-2">&lt;2s</div>
+            <p className="text-white font-medium mb-1">Alert Response</p>
+            <p className="text-sm text-secondary">Automatic emergency notification</p>
+          </div>
+          <div className="card">
+            <div className="text-4xl font-bold text-accent mb-2">24/7</div>
+            <p className="text-white font-medium mb-1">Monitoring</p>
+            <p className="text-sm text-secondary">Continuous sensor data analysis</p>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-6 py-20 relative">
-        <div className="card text-center max-w-2xl mx-auto relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-mint/5 pointer-events-none" />
-          <div className="relative z-10">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Ride Safer?
-            </h2>
-            <p className="text-xl text-secondary mb-8">
-              Join thousands of riders who trust RideSafe AI for their safety on the road.
-            </p>
-            <Link to="/signup" className="btn btn-primary btn-lg hover-lift">
-              Get Started Free
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
+      <section className="container mx-auto px-8 py-24">
+        <div className="text-center max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Ride Safer?
+          </h2>
+          <p className="text-xl text-secondary mb-8">
+            Join thousands of riders who trust RideSafe AI for their safety on the road.
+          </p>
+          <Link to="/signup" className="btn btn-primary btn-lg">
+            Get Started Free
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="container mx-auto px-6 py-12 border-t border-white/10">
+      <footer className="container mx-auto px-8 py-12 border-t border-white/10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-secondary flex items-center justify-center">
               <Activity className="w-4 h-4 text-white" />
             </div>
             <span className="text-lg font-bold text-white">RideSafe AI</span>
@@ -258,41 +303,12 @@ export default function Landing() {
 
 function FeatureCard({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
   return (
-    <div className="card group hover-lift">
-      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 to-mint/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-        <Icon className="w-7 h-7 text-accent" />
+    <div className="card">
+      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+        <Icon className="w-6 h-6 text-accent" />
       </div>
-      <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
-      <p className="text-secondary text-sm leading-relaxed">{description}</p>
-    </div>
-  );
-}
-
-function StepCard({ number, title, description, icon: Icon }: { number: string; title: string; description: string; icon: any }) {
-  return (
-    <div className="text-center">
-      <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
-        <Icon className="w-8 h-8 text-accent" />
-      </div>
-      <div className="text-xs font-bold text-accent mb-2">STEP {number}</div>
       <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-      <p className="text-secondary text-sm">{description}</p>
-    </div>
-  );
-}
-
-function BenefitCard({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
-  return (
-    <div className="flex gap-4 p-4 rounded-lg bg-tertiary hover:bg-card transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-      <div className="flex-shrink-0">
-        <div className="w-12 h-12 rounded-lg bg-success/10 flex items-center justify-center">
-          <Icon className="w-6 h-6 text-success" />
-        </div>
-      </div>
-      <div>
-        <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-        <p className="text-secondary text-sm">{description}</p>
-      </div>
+      <p className="text-secondary text-sm leading-relaxed">{description}</p>
     </div>
   );
 }
