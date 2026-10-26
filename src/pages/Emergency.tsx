@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { 
-  AlertTriangle, 
-  MapPin, 
-  Phone, 
+import {
+  AlertTriangle,
+  MapPin,
+  Phone,
   CheckCircle,
   User,
   Navigation
@@ -17,7 +17,7 @@ export default function Emergency() {
   const triggerSOS = () => {
     setShowCountdown(true);
     setCountdown(15);
-    
+
     const interval = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
@@ -38,18 +38,18 @@ export default function Emergency() {
     return (
       <div className="container mx-auto px-6 py-8">
         <div className="max-w-2xl mx-auto">
-          <div className="card border-2 border-danger text-center">
-            <AlertTriangle className="w-24 h-24 text-danger mx-auto mb-6" />
+          <div className="card border-2 border-danger text-center animate-pulse-glow-danger">
+            <AlertTriangle className="w-24 h-24 text-danger mx-auto mb-6 animate-float" />
             <h1 className="text-4xl font-bold text-danger mb-4">EMERGENCY SOS</h1>
             <p className="text-xl text-secondary mb-2">
               Alerting emergency contacts in:
             </p>
-            
-            <div className="text-8xl font-bold text-danger my-8">
+
+            <div className="text-8xl font-bold text-danger my-8 animate-pulse">
               {countdown}
             </div>
-            
-            <div className="card mb-6 bg-tertiary" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+
+            <div className="card mb-6 bg-tertiary border-danger/30" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
               <div className="flex items-center gap-4 mb-4">
                 <MapPin className="w-6 h-6 text-accent" />
                 <div className="text-left">
@@ -65,23 +65,23 @@ export default function Emergency() {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex gap-4 justify-center">
               <button
                 onClick={cancelSOS}
-                className="btn btn-success btn-lg"
+                className="btn btn-success btn-lg hover-lift"
               >
                 <CheckCircle className="w-5 h-5" />
                 CANCEL
               </button>
               <button
-                className="btn btn-danger btn-lg"
+                className="btn btn-danger btn-lg hover-lift"
               >
                 <Phone className="w-5 h-5" />
                 CALL NOW
               </button>
             </div>
-            
+
             <p className="text-sm text-secondary mt-6">
               This is a demo. No actual emergency services will be contacted.
             </p>
@@ -99,16 +99,16 @@ export default function Emergency() {
       </div>
 
       {/* SOS Button */}
-      <div className="card mb-8 border-2 border-danger bg-danger/5">
+      <div className="card mb-8 border-2 border-danger bg-danger/5 hover-lift">
         <div className="text-center">
-          <AlertTriangle className="w-16 h-16 text-danger mx-auto mb-4" />
+          <AlertTriangle className="w-16 h-16 text-danger mx-auto mb-4 animate-pulse-glow-danger" />
           <h2 className="text-2xl font-bold text-white mb-2">Emergency SOS</h2>
           <p className="text-secondary mb-6">
             Immediately alert your emergency contacts with your location
           </p>
           <button
             onClick={triggerSOS}
-            className="btn btn-danger btn-lg"
+            className="btn btn-danger btn-lg hover-lift"
           >
             <AlertTriangle className="w-5 h-5" />
             TRIGGER SOS
@@ -120,7 +120,7 @@ export default function Emergency() {
       </div>
 
       {/* Emergency Contacts */}
-      <div className="card mb-8">
+      <div className="card mb-8 hover-lift">
         <h2 className="text-xl font-semibold text-white mb-6">Emergency Contacts</h2>
         <div className="space-y-4">
           <ContactCard
@@ -136,18 +136,18 @@ export default function Emergency() {
             isPrimary={false}
           />
         </div>
-        <button className="btn btn-secondary w-full mt-4">
+        <button className="btn btn-secondary w-full mt-4 hover-lift">
           Add Emergency Contact
         </button>
       </div>
 
       {/* Incident History */}
-      <div className="card">
+      <div className="card hover-lift">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-white">Incident History</h2>
           <span className="badge badge-info">{incidents.length} Total</span>
         </div>
-        
+
         {incidents.length > 0 ? (
           <div className="space-y-4">
             {incidents.map((incident) => (

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { 
-  Play, 
-  Square, 
-  Gauge, 
-  Activity, 
-  MapPin, 
+import {
+  Play,
+  Square,
+  Gauge,
+  Activity,
+  MapPin,
   Clock,
   Zap,
   AlertTriangle
@@ -64,7 +64,7 @@ export default function Monitoring() {
     setCrashDetected(true);
     setSensorData(generateCrashReading());
     setCountdown(15);
-    
+
     const countdownInterval = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
@@ -85,17 +85,17 @@ export default function Monitoring() {
     return (
       <div className="container mx-auto px-6 py-8">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="card border-2 border-danger">
-            <AlertTriangle className="w-24 h-24 text-danger mx-auto mb-6" />
-            <h1 className="text-4xl font-bold text-danger mb-4">CRASH DETECTED</h1>
+          <div className="card border-2 border-danger animate-pulse-glow-danger">
+            <AlertTriangle className="w-32 h-32 text-danger mx-auto mb-6 animate-float" />
+            <h1 className="text-5xl font-bold text-danger mb-4">CRASH DETECTED</h1>
             <p className="text-xl text-secondary mb-8">
               Emergency alert will be sent in:
             </p>
-            
-            <div className="text-8xl font-bold text-danger mb-8">
+
+            <div className="text-9xl font-bold text-danger mb-8 animate-pulse">
               {countdown}
             </div>
-            
+
             <div className="flex gap-4 justify-center">
               <button
                 onClick={cancelAlert}
@@ -109,7 +109,7 @@ export default function Monitoring() {
                 SEND SOS NOW
               </button>
             </div>
-            
+
             <p className="text-sm text-secondary mt-6">
               This is a demo. No actual emergency services will be contacted.
             </p>
@@ -151,7 +151,7 @@ export default function Monitoring() {
         {!isMonitoring ? (
           <button
             onClick={startMonitoring}
-            className="btn btn-primary btn-lg flex-1"
+            className="btn btn-primary btn-lg flex-1 hover-lift"
           >
             <Play className="w-5 h-5" />
             Start Monitoring
@@ -159,7 +159,7 @@ export default function Monitoring() {
         ) : (
           <button
             onClick={stopMonitoring}
-            className="btn btn-danger btn-lg flex-1"
+            className="btn btn-danger btn-lg flex-1 hover-lift"
           >
             <Square className="w-5 h-5" />
             Stop Monitoring
@@ -174,24 +174,28 @@ export default function Monitoring() {
           label="Speed"
           value={`${rideStats.speed.toFixed(1)} km/h`}
           color="accent"
+          isMonitoring={isMonitoring}
         />
         <SensorCard
           icon={Activity}
           label="G-Force"
           value={sensorData.gForce.toFixed(2)}
           color={sensorData.gForce > 3 ? 'danger' : 'success'}
+          isMonitoring={isMonitoring}
         />
         <SensorCard
           icon={MapPin}
           label="Distance"
           value={`${rideStats.distance.toFixed(2)} km`}
           color="info"
+          isMonitoring={isMonitoring}
         />
         <SensorCard
           icon={Clock}
           label="Duration"
           value={`${Math.floor(rideStats.duration / 60)}:${(rideStats.duration % 60).toString().padStart(2, '0')}`}
           color="secondary"
+          isMonitoring={isMonitoring}
         />
       </div>
 
@@ -223,19 +227,19 @@ export default function Monitoring() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
               <p className="text-sm text-secondary mb-1">Max Speed</p>
-              <p className="text-2xl font-bold text-white">{rideStats.speed.toFixed(1)} km/h</p>
+              <p className="text-2xl font-bold text-white data-value">{rideStats.speed.toFixed(1)} km/h</p>
             </div>
             <div>
               <p className="text-sm text-secondary mb-1">Max G-Force</p>
-              <p className="text-2xl font-bold text-white">{rideStats.maxGForce.toFixed(2)} G</p>
+              <p className="text-2xl font-bold text-white data-value">{rideStats.maxGForce.toFixed(2)} G</p>
             </div>
             <div>
               <p className="text-sm text-secondary mb-1">Total Distance</p>
-              <p className="text-2xl font-bold text-white">{rideStats.distance.toFixed(2)} km</p>
+              <p className="text-2xl font-bold text-white data-value">{rideStats.distance.toFixed(2)} km</p>
             </div>
             <div>
               <p className="text-sm text-secondary mb-1">Duration</p>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-white data-value">
                 {Math.floor(rideStats.duration / 60)}:{(rideStats.duration % 60).toString().padStart(2, '0')}
               </p>
             </div>
@@ -246,33 +250,35 @@ export default function Monitoring() {
   );
 }
 
-function SensorCard({ 
-  icon: Icon, 
-  label, 
-  value, 
-  color 
-}: { 
-  icon: any; 
-  label: string; 
-  value: string; 
+function SensorCard({
+  icon: Icon,
+  label,
+  value,
+  color,
+  isMonitoring
+}: {
+  icon: any;
+  label: string;
+  value: string;
   color: string;
+  isMonitoring: boolean;
 }) {
   const colorClasses = {
-    accent: 'bg-accent/10 text-accent',
-    success: 'bg-success/10 text-success',
-    danger: 'bg-danger/10 text-danger',
-    warning: 'bg-warning/10 text-warning',
-    info: 'bg-info/10 text-accent',
-    secondary: 'bg-secondary/10 text-secondary'
+    accent: 'bg-gradient-to-br from-accent/20 to-mint/10 text-accent',
+    success: 'bg-gradient-to-br from-success/20 to-green-500/10 text-success',
+    danger: 'bg-gradient-to-br from-danger/20 to-red-500/10 text-danger',
+    warning: 'bg-gradient-to-br from-warning/20 to-amber-500/10 text-warning',
+    info: 'bg-gradient-to-br from-accent/20 to-cyan-500/10 text-accent',
+    secondary: 'bg-gradient-to-br from-secondary/20 to-gray-500/10 text-secondary'
   };
 
   return (
-    <div className="card">
-      <div className={`w-12 h-12 rounded-lg ${colorClasses[color as keyof typeof colorClasses]} flex items-center justify-center mb-4`}>
-        <Icon className="w-6 h-6" />
+    <div className={`card group hover-lift ${isMonitoring ? 'animate-pulse-glow' : ''}`}>
+      <div className={`w-14 h-14 rounded-xl ${colorClasses[color as keyof typeof colorClasses]} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform ${isMonitoring ? 'animate-pulse' : ''}`}>
+        <Icon className="w-7 h-7" />
       </div>
-      <p className="text-sm text-secondary mb-1">{label}</p>
-      <p className="text-2xl font-bold text-white">{value}</p>
+      <p className="text-sm text-secondary mb-2 font-medium">{label}</p>
+      <p className="text-3xl font-bold text-white data-value">{value}</p>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { 
-  Shield, 
-  Battery, 
-  Bluetooth, 
+import {
+  Shield,
+  Battery,
+  Bluetooth,
   RefreshCw,
   CheckCircle,
   XCircle,
-  Smartphone
+  Cpu
 } from 'lucide-react';
 import { demoHelmet } from '../data/demoData';
 
@@ -42,18 +42,18 @@ export default function Device() {
       </div>
 
       {/* Device Status Card */}
-      <div className="card mb-8">
+      <div className="card mb-8 hover-lift">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
-              <Shield className="w-8 h-8 text-white" />
+            <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center ${helmet.isConnected ? 'animate-pulse-glow' : ''}`}>
+              <Shield className="w-10 h-10 text-white" />
             </div>
             <div>
               <h2 className="text-xl font-semibold text-white">{helmet.name}</h2>
               <p className="text-sm text-secondary">Smart Helmet • ID: {helmet.id}</p>
             </div>
           </div>
-          <span className={`badge ${helmet.isConnected ? 'badge-success' : 'badge-danger'}`}>
+          <span className={`badge ${helmet.isConnected ? 'badge-success badge-glow' : 'badge-danger'}`}>
             {helmet.isConnected ? 'Connected' : 'Disconnected'}
           </span>
         </div>
@@ -83,7 +83,7 @@ export default function Device() {
           <button
             onClick={toggleConnection}
             disabled={isConnecting}
-            className={`btn ${helmet.isConnected ? 'btn-danger' : 'btn-primary'}`}
+            className={`btn ${helmet.isConnected ? 'btn-danger' : 'btn-primary'} hover-lift`}
           >
             {isConnecting ? (
               <div className="spinner" />
@@ -105,14 +105,14 @@ export default function Device() {
       {/* Device Controls */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Wear Status */}
-        <div className="card">
+        <div className="card hover-lift">
           <h3 className="text-lg font-semibold text-white mb-4">Wear Status</h3>
           <p className="text-sm text-secondary mb-6">
             Toggle whether the helmet is currently being worn. This affects crash detection sensitivity.
           </p>
           <button
             onClick={toggleWorn}
-            className={`btn ${helmet.isWorn ? 'btn-success' : 'btn-secondary'} w-full`}
+            className={`btn ${helmet.isWorn ? 'btn-success' : 'btn-secondary'} w-full hover-lift`}
           >
             {helmet.isWorn ? (
               <>
@@ -129,7 +129,7 @@ export default function Device() {
         </div>
 
         {/* Calibration */}
-        <div className="card">
+        <div className="card hover-lift">
           <h3 className="text-lg font-semibold text-white mb-4">Calibration</h3>
           <p className="text-sm text-secondary mb-2">
             Last calibrated: {helmet.lastCalibrated.toLocaleDateString()}
@@ -140,7 +140,7 @@ export default function Device() {
           <button
             onClick={calibrate}
             disabled={isConnecting}
-            className="btn btn-secondary w-full"
+            className="btn btn-secondary w-full hover-lift"
           >
             {isConnecting ? (
               <div className="spinner" />
@@ -155,7 +155,7 @@ export default function Device() {
       </div>
 
       {/* Device Info */}
-      <div className="card mt-8">
+      <div className="card mt-8 hover-lift">
         <h3 className="text-lg font-semibold text-white mb-4">Device Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InfoItem label="Device ID" value={helmet.id} />
@@ -170,11 +170,11 @@ export default function Device() {
       {/* Demo Simulator Notice */}
       <div className="card mt-8 border-2 border-accent/20">
         <div className="flex items-start gap-4">
-          <Smartphone className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+          <Cpu className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
           <div>
             <h4 className="text-lg font-semibold text-white mb-2">Demo Device Simulator</h4>
             <p className="text-sm text-secondary">
-              This is a simulated environment. No actual hardware is connected. 
+              This is a simulated environment. No actual hardware is connected.
               In production, this would connect to a real smart helmet via Bluetooth.
             </p>
           </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Activity, Mail, Lock, User, Phone, ArrowRight } from 'lucide-react';
+import { Activity, Mail, Lock, User, Phone, ArrowRight, Shield } from 'lucide-react';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate signup
     setTimeout(() => {
       setIsLoading(false);
@@ -25,15 +25,21 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-primary p-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-primary p-6 relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Animated Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-mint/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+      </div>
+
+      <div className="w-full max-w-md relative z-10 animate-scale-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center mx-auto mb-4">
-            <Activity className="w-8 h-8 text-white" />
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-mint flex items-center justify-center mx-auto mb-4 animate-pulse-glow shadow-lg">
+            <Activity className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Create Account</h1>
-          <p className="text-secondary mt-2">Start your safer riding journey</p>
+          <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
+          <p className="text-secondary">Start your safer riding journey</p>
         </div>
 
         {/* Form */}
@@ -43,13 +49,12 @@ export default function Signup() {
               Full Name
             </label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-white placeholder-muted focus:outline-none focus:border-accent transition-colors"
-                style={{ backgroundColor: 'var(--bg-card)' }}
+                className="input-premium pl-12"
                 placeholder="John Doe"
                 required
               />
@@ -61,13 +66,12 @@ export default function Signup() {
               Email Address
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-white placeholder-muted focus:outline-none focus:border-accent transition-colors"
-                style={{ backgroundColor: 'var(--bg-card)' }}
+                className="input-premium pl-12"
                 placeholder="you@example.com"
                 required
               />
@@ -79,13 +83,12 @@ export default function Signup() {
               Phone Number
             </label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
               <input
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-white placeholder-muted focus:outline-none focus:border-accent transition-colors"
-                style={{ backgroundColor: 'var(--bg-card)' }}
+                className="input-premium pl-12"
                 placeholder="+91 98765 43210"
                 required
               />
@@ -97,13 +100,12 @@ export default function Signup() {
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
               <input
                 type="password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-white placeholder-muted focus:outline-none focus:border-accent transition-colors"
-                style={{ backgroundColor: 'var(--bg-card)' }}
+                className="input-premium pl-12"
                 placeholder="••••••••"
                 required
               />
@@ -115,13 +117,12 @@ export default function Signup() {
               Confirm Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
               <input
                 type="password"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-white placeholder-muted focus:outline-none focus:border-accent transition-colors"
-                style={{ backgroundColor: 'var(--bg-card)' }}
+                className="input-premium pl-12"
                 placeholder="••••••••"
                 required
               />
@@ -129,7 +130,7 @@ export default function Signup() {
           </div>
 
           <div className="flex items-start gap-2">
-            <input type="checkbox" className="w-4 h-4 mt-1 rounded border-white/10 bg-card" required />
+            <input type="checkbox" className="w-4 h-4 mt-1 rounded border-white/10 bg-card accent-accent" required />
             <span className="text-sm text-secondary">
               I agree to the{' '}
               <Link to="/terms" className="text-accent hover:underline">
@@ -145,7 +146,7 @@ export default function Signup() {
           <button
             type="submit"
             disabled={isLoading}
-            className="btn btn-primary btn-lg w-full"
+            className="btn btn-primary btn-lg w-full hover-lift"
           >
             {isLoading ? (
               <div className="spinner" />
@@ -165,6 +166,14 @@ export default function Signup() {
             Sign in
           </Link>
         </p>
+
+        {/* Demo Account */}
+        <div className="mt-8 p-4 rounded-lg bg-tertiary border border-white/10 flex items-start gap-3" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+          <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-secondary">
+            Demo account: Use any email/password to explore the platform
+          </p>
+        </div>
       </div>
     </div>
   );

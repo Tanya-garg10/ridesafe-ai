@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { 
-  Search, 
-  MapPin, 
+import {
+  Search,
+  MapPin,
   Clock,
   Activity,
   TrendingUp,
@@ -17,7 +17,7 @@ export default function History() {
 
   const filteredRides = rides.filter(ride => {
     const matchesSearch = ride.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = 
+    const matchesFilter =
       filter === 'all' ||
       (filter === 'with-incidents' && ride.incidents.length > 0) ||
       (filter === 'without-incidents' && ride.incidents.length === 0);
@@ -59,14 +59,13 @@ export default function History() {
       <div className="card mb-8">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
             <input
               type="text"
               placeholder="Search rides..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white placeholder-muted focus:outline-none focus:border-accent transition-colors"
-              style={{ backgroundColor: 'var(--bg-tertiary)' }}
+              className="input-premium pl-12"
             />
           </div>
           <div className="flex gap-2">
@@ -99,7 +98,7 @@ export default function History() {
             Rides ({filteredRides.length})
           </h2>
         </div>
-        
+
         {filteredRides.length > 0 ? (
           <div className="space-y-4">
             {filteredRides.map((ride) => (
@@ -131,19 +130,19 @@ function SummaryCard({ icon: Icon, label, value }: { icon: any; label: string; v
 
 function RideCard({ ride }: { ride: any }) {
   const date = new Date(ride.startTime);
-  const formattedDate = date.toLocaleDateString('en-US', { 
+  const formattedDate = date.toLocaleDateString('en-US', {
     weekday: 'short',
-    month: 'short', 
+    month: 'short',
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit'
   });
-  
+
   const duration = Math.floor(ride.duration / 60);
   const minutes = ride.duration % 60;
 
   return (
-    <div className="p-6 rounded-lg bg-tertiary hover:bg-card transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+    <div className="p-6 rounded-lg bg-tertiary hover:bg-card transition-colors hover-lift" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
@@ -155,7 +154,7 @@ function RideCard({ ride }: { ride: any }) {
           </div>
         </div>
         <div className="text-right">
-          <p className="text-2xl font-bold text-accent">{ride.safetyScore}/100</p>
+          <p className="text-2xl font-bold text-accent data-value">{ride.safetyScore}/100</p>
           <p className="text-sm text-secondary">Safety Score</p>
         </div>
       </div>

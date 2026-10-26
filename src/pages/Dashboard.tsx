@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { 
-  Shield, 
-  Activity, 
-  Battery, 
-  MapPin, 
+import {
+  Shield,
+  Activity,
+  Battery,
+  MapPin,
   AlertTriangle,
   CheckCircle,
   XCircle
@@ -60,6 +60,17 @@ export default function Dashboard() {
         />
       </div>
 
+      {/* Safety Score Circle */}
+      <div className="card mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold text-white">Overall Safety Score</h2>
+          <span className="badge badge-info">This Month</span>
+        </div>
+        <div className="flex items-center justify-center">
+          <CircularProgress score={avgSafetyScore} />
+        </div>
+      </div>
+
       {/* Helmet Status */}
       <div className="card mb-8">
         <div className="flex items-center justify-between mb-6">
@@ -68,9 +79,9 @@ export default function Dashboard() {
             {helmet.isConnected ? 'Connected' : 'Disconnected'}
           </span>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 p-4 rounded-lg bg-tertiary hover:bg-card transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
             <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
               <Shield className="w-6 h-6 text-accent" />
             </div>
@@ -92,7 +103,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 p-4 rounded-lg bg-tertiary hover:bg-card transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
             <div className="w-12 h-12 rounded-lg bg-success/10 flex items-center justify-center">
               <Battery className="w-6 h-6 text-success" />
             </div>
@@ -102,7 +113,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 p-4 rounded-lg bg-tertiary hover:bg-card transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
             <div className="w-12 h-12 rounded-lg bg-info/10 flex items-center justify-center">
               <Activity className="w-6 h-6 text-accent" />
             </div>
@@ -122,7 +133,7 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold text-white">Recent Rides</h2>
             <button className="text-sm text-accent hover:underline">View All</button>
           </div>
-          
+
           <div className="space-y-4">
             {recentRides.map((ride) => (
               <RideCard key={ride.id} ride={ride} />
@@ -136,7 +147,7 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold text-white">Recent Incidents</h2>
             <button className="text-sm text-accent hover:underline">View All</button>
           </div>
-          
+
           {recentIncidents.length > 0 ? (
             <div className="space-y-4">
               {recentIncidents.map((incident) => (
@@ -155,36 +166,72 @@ export default function Dashboard() {
   );
 }
 
-function StatCard({ 
-  icon: Icon, 
-  label, 
-  value, 
-  trend, 
-  color 
-}: { 
-  icon: any; 
-  label: string; 
-  value: string | number; 
-  trend: string; 
+function StatCard({
+  icon: Icon,
+  label,
+  value,
+  trend,
+  color
+}: {
+  icon: any;
+  label: string;
+  value: string | number;
+  trend: string;
   color: string;
 }) {
   const colorClasses = {
-    accent: 'bg-accent/10 text-accent',
-    success: 'bg-success/10 text-success',
-    info: 'bg-info/10 text-accent',
-    warning: 'bg-warning/10 text-warning'
+    accent: 'bg-gradient-to-br from-accent/20 to-mint/10 text-accent',
+    success: 'bg-gradient-to-br from-success/20 to-green-500/10 text-success',
+    info: 'bg-gradient-to-br from-accent/20 to-cyan-500/10 text-accent',
+    warning: 'bg-gradient-to-br from-warning/20 to-amber-500/10 text-warning'
   };
 
   return (
-    <div className="card">
+    <div className="card group hover-lift">
       <div className="flex items-center justify-between mb-4">
-        <div className={`w-12 h-12 rounded-lg ${colorClasses[color as keyof typeof colorClasses]} flex items-center justify-center`}>
-          <Icon className="w-6 h-6" />
+        <div className={`w-14 h-14 rounded-xl ${colorClasses[color as keyof typeof colorClasses]} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+          <Icon className="w-7 h-7" />
         </div>
-        <span className="text-sm text-success">{trend}</span>
+        <span className="text-sm font-semibold text-success">{trend}</span>
       </div>
-      <p className="text-sm text-secondary mb-1">{label}</p>
-      <p className="text-2xl font-bold text-white">{value}</p>
+      <p className="text-sm text-secondary mb-2 font-medium">{label}</p>
+      <p className="text-3xl font-bold text-white">{value}</p>
+    </div>
+  );
+}
+
+function CircularProgress({ score }: { score: number }) {
+  const radius = 60;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (score / 100) * circumference;
+
+  const getColor = (score: number) => {
+    if (score >= 90) return '#34c759';
+    if (score >= 70) return '#00d4ff';
+    if (score >= 50) return '#ff9500';
+    return '#ff3b30';
+  };
+
+  return (
+    <div className="circular-progress">
+      <svg width="160" height="160">
+        <circle
+          className="circular-progress-circle"
+          cx="80"
+          cy="80"
+          r={radius}
+        />
+        <circle
+          className="circular-progress-bar"
+          cx="80"
+          cy="80"
+          r={radius}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          style={{ stroke: getColor(score) }}
+        />
+      </svg>
+      <div className="circular-progress-text">{score}</div>
     </div>
   );
 }

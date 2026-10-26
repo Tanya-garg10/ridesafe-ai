@@ -1,8 +1,8 @@
 import { demoRides } from '../data/demoData';
-import { 
-  TrendingUp, 
-  Activity, 
-  AlertTriangle, 
+import {
+  TrendingUp,
+  Activity,
+  AlertTriangle,
   Shield,
   Clock,
   Calendar,
@@ -71,41 +71,41 @@ export default function Analytics() {
       </div>
 
       {/* Weekly Distance Chart */}
-      <div className="card mb-8">
+      <div className="card mb-8 hover-lift">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-white">Weekly Distance</h2>
           <span className="text-sm text-secondary">Last 5 days</span>
         </div>
-        
+
         <div className="h-64 flex items-end justify-between gap-4">
           {weeklyData.map((data, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center">
+            <div key={index} className="flex-1 flex flex-col items-center group">
               <div className="w-full bg-tertiary rounded-t-lg relative" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
                 <div
-                  className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg transition-all duration-500"
+                  className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg transition-all duration-500 chart-bar"
                   style={{ height: `${(data.distance / maxDistance) * 100}%` }}
                 />
               </div>
               <p className="text-sm text-secondary mt-2">{data.day}</p>
-              <p className="text-xs text-white font-medium">{data.distance} km</p>
+              <p className="text-xs text-white font-medium data-value">{data.distance} km</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Safety Score Chart */}
-      <div className="card mb-8">
+      <div className="card mb-8 hover-lift">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-white">Safety Score Trend</h2>
           <span className="text-sm text-secondary">Last 5 days</span>
         </div>
-        
+
         <div className="h-64 flex items-end justify-between gap-4">
           {weeklyData.map((data, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center">
+            <div key={index} className="flex-1 flex flex-col items-center group">
               <div className="w-full bg-tertiary rounded-t-lg relative" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
                 <div
-                  className={`w-full rounded-t-lg transition-all duration-500 ${
+                  className={`w-full rounded-t-lg transition-all duration-500 chart-bar ${
                     data.safety >= 90 ? 'bg-gradient-to-t from-green-500 to-green-400' :
                     data.safety >= 80 ? 'bg-gradient-to-t from-yellow-500 to-yellow-400' :
                     'bg-gradient-to-t from-red-500 to-red-400'
@@ -114,7 +114,7 @@ export default function Analytics() {
                 />
               </div>
               <p className="text-sm text-secondary mt-2">{data.day}</p>
-              <p className="text-xs text-white font-medium">{data.safety}/100</p>
+              <p className="text-xs text-white font-medium data-value">{data.safety}/100</p>
             </div>
           ))}
         </div>
@@ -123,7 +123,7 @@ export default function Analytics() {
       {/* Insights Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Ride Patterns */}
-        <div className="card">
+        <div className="card hover-lift">
           <h3 className="text-lg font-semibold text-white mb-4">Ride Patterns</h3>
           <div className="space-y-4">
             <PatternItem
@@ -150,7 +150,7 @@ export default function Analytics() {
         </div>
 
         {/* Safety Insights */}
-        <div className="card">
+        <div className="card hover-lift">
           <h3 className="text-lg font-semibold text-white mb-4">Safety Insights</h3>
           <div className="space-y-4">
             <InsightCard
@@ -179,7 +179,7 @@ export default function Analytics() {
           <div>
             <h4 className="text-lg font-semibold text-white mb-2">Demo Analytics</h4>
             <p className="text-sm text-secondary">
-              This is simulated analytics data based on demo rides. 
+              This is simulated analytics data based on demo rides.
               In production, this would show real analytics from your actual riding data.
             </p>
           </div>

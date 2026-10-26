@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { 
-  User, 
-  Shield, 
-  Bell, 
-  Smartphone, 
+import {
+  User,
+  Shield,
+  Bell,
+  Smartphone,
   MapPin,
   Save,
   LogOut
@@ -46,9 +46,9 @@ export default function Settings() {
         {/* Settings Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Profile Section */}
-          <div className="card">
+          <div className="card hover-lift">
             <h2 className="text-xl font-semibold text-white mb-6">Profile</h2>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -58,8 +58,7 @@ export default function Settings() {
                   type="text"
                   value={user.name}
                   onChange={(e) => setUser({ ...user, name: e.target.value })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                 />
               </div>
 
@@ -71,8 +70,7 @@ export default function Settings() {
                   type="email"
                   value={user.email}
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                 />
               </div>
 
@@ -84,17 +82,16 @@ export default function Settings() {
                   type="tel"
                   value={user.phone}
                   onChange={(e) => setUser({ ...user, phone: e.target.value })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                 />
               </div>
             </div>
           </div>
 
           {/* Emergency Contact Section */}
-          <div className="card">
+          <div className="card hover-lift">
             <h2 className="text-xl font-semibold text-white mb-6">Emergency Contact</h2>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -107,8 +104,7 @@ export default function Settings() {
                     ...user,
                     emergencyContact: { ...user.emergencyContact, name: e.target.value }
                   })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                 />
               </div>
 
@@ -123,8 +119,7 @@ export default function Settings() {
                     ...user,
                     emergencyContact: { ...user.emergencyContact, phone: e.target.value }
                   })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                 />
               </div>
 
@@ -139,17 +134,16 @@ export default function Settings() {
                     ...user,
                     emergencyContact: { ...user.emergencyContact, relationship: e.target.value }
                   })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                 />
               </div>
             </div>
           </div>
 
           {/* Alert Preferences Section */}
-          <div className="card">
+          <div className="card hover-lift">
             <h2 className="text-xl font-semibold text-white mb-6">Alert Preferences</h2>
-            
+
             <div className="space-y-4">
               <ToggleSetting
                 label="Enable SOS Alerts"
@@ -180,8 +174,7 @@ export default function Settings() {
                   type="number"
                   value={alertPrefs.countdownSeconds}
                   onChange={(e) => setAlertPrefs({ ...alertPrefs, countdownSeconds: parseInt(e.target.value) || 15 })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                   min="5"
                   max="60"
                 />
@@ -196,8 +189,7 @@ export default function Settings() {
                   step="0.1"
                   value={alertPrefs.gForceThreshold}
                   onChange={(e) => setAlertPrefs({ ...alertPrefs, gForceThreshold: parseFloat(e.target.value) || 4.0 })}
-                  className="w-full px-4 py-3 bg-tertiary border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
-                  style={{ backgroundColor: 'var(--bg-tertiary)' }}
+                  className="input-premium"
                   min="2.0"
                   max="10.0"
                 />
@@ -213,7 +205,7 @@ export default function Settings() {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="btn btn-primary"
+              className="btn btn-primary hover-lift"
             >
               {isSaving ? (
                 <div className="spinner" />
@@ -224,7 +216,7 @@ export default function Settings() {
                 </>
               )}
             </button>
-            <button className="btn btn-secondary">
+            <button className="btn btn-secondary hover-lift">
               <LogOut className="w-5 h-5" />
               Logout
             </button>
@@ -248,35 +240,28 @@ function NavItem({ icon: Icon, label, active = false }: { icon: any; label: stri
   );
 }
 
-function ToggleSetting({ 
-  label, 
-  description, 
-  checked, 
-  onChange 
-}: { 
-  label: string; 
-  description: string; 
-  checked: boolean; 
+function ToggleSetting({
+  label,
+  description,
+  checked,
+  onChange
+}: {
+  label: string;
+  description: string;
+  checked: boolean;
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <div className="flex items-start justify-between">
+    <div className="flex items-start justify-between p-4 rounded-lg bg-tertiary hover:bg-card transition-colors" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
       <div className="flex-1">
         <p className="font-medium text-white mb-1">{label}</p>
         <p className="text-sm text-secondary">{description}</p>
       </div>
       <button
         onClick={() => onChange(!checked)}
-        className={`relative w-12 h-6 rounded-full transition-colors ${
-          checked ? 'bg-accent' : 'bg-tertiary'
-        }`}
-        style={{ backgroundColor: checked ? 'var(--accent-primary)' : 'var(--bg-tertiary)' }}
+        className={`toggle-switch ${checked ? 'active' : ''}`}
       >
-        <div
-          className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${
-            checked ? 'translate-x-7' : 'translate-x-1'
-          }`}
-        />
+        <div className="toggle-switch-knob" />
       </button>
     </div>
   );
