@@ -39,7 +39,7 @@ export default function Signup() {
             <Activity className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
-          <p className="text-secondary">Start your safer riding journey</p>
+          <p className="text-secondary">Smart Helmet. Safer Rides.</p>
         </div>
 
         {/* Form */}

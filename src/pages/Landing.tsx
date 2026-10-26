@@ -32,7 +32,7 @@ export default function Landing() {
             </div>
             <div>
               <span className="text-xl font-bold text-white">RideSafe AI</span>
-              <p className="text-xs text-secondary">Smart Helmet. Safer Rides. A Brighter Tomorrow.</p>
+              <p className="text-xs text-secondary">Smart Helmet. Safer Rides.</p>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-8">
@@ -75,15 +75,14 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-mint/5 pointer-events-none" />
         <div className="max-w-4xl relative animate-fade-in-up">
           <div className="badge-premium mb-6 inline-block animate-gradient">
-            AI-Powered Safety Platform
+            CONNECTED ROAD SAFETY
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Every Ride Deserves a
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-mint animate-gradient"> Safer Journey.</span>
           </h1>
           <p className="text-xl text-secondary mb-8 leading-relaxed max-w-2xl">
-            Advanced AI-assisted crash detection, connected helmet monitoring, and intelligent emergency workflows.
-            Transform your smartphone into a comprehensive safety system.
+            Smarter helmet monitoring, AI-assisted incident detection and connected safety workflows — designed around every journey.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/login" className="btn btn-primary btn-lg hover-lift">
@@ -249,7 +248,7 @@ export default function Landing() {
             <span className="text-lg font-bold text-white">RideSafe AI</span>
           </div>
           <p className="text-secondary text-sm">
-            © 2024 RideSafe AI. Smart Helmet. Safer Rides. A Brighter Tomorrow.
+            © 2024 RideSafe AI. Smart Helmet. Safer Rides.
           </p>
         </div>
       </footer>
